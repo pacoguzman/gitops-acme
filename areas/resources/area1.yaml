@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: area1
+spec:
+  project: default
+  source:
+    path: area1
+    repoURL: https://github.com/pacoguzman/gitops-acme
+  destination:
+    namespace: area1
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    - ApplyOutOfSyncOnly=true
