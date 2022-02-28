@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rollouts-2
+spec:
+  project: default
+  source:
+    path: area1/team1/rollouts-2/dev
+    repoURL: https://github.com/pacoguzman/gitops-acme
+  destination:
+    namespace: rollouts-2
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated: {}
+    syncOptions:
+    - CreateNamespace=true
