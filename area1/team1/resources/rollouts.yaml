@@ -5,7 +5,7 @@ metadata:
 spec:
   project: default
   source:
-    path: area1/team1/rollouts
+    path: area1/team1/rollouts/dev
     repoURL: https://github.com/pacoguzman/gitops-acme
   destination:
     namespace: rollouts
