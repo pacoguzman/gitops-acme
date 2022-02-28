@@ -11,6 +11,6 @@ spec:
     namespace: area2
     server: https://kubernetes.default.svc
   syncPolicy:
+    automated: {}
     syncOptions:
     - CreateNamespace=true
-    - ApplyOutOfSyncOnly=true
