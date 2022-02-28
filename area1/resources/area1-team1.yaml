@@ -5,7 +5,7 @@ metadata:
 spec:
   project: default
   source:
-    path: area1-team1
+    path: area1/team1
     repoURL: https://github.com/pacoguzman/gitops-acme
   destination:
     namespace: area1-team1
