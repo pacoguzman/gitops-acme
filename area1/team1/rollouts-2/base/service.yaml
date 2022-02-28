@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rollouts-2
+  namespace: rollouts-2
+spec:
+  selector:
+    app: rollouts-2
+  ports:
+  - port: 80
+    targetPort: http
+    protocol: TCP
+    name: http
