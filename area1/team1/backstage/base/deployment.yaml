@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backstage
+  namespace: backstage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backstage
+  template:
+    metadata:
+      labels:
+        app: backstage
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "7007"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+        - name: backstage
+          image: registry.hub.docker.com/pacoguzman/dev-portal:a34342d
+          imagePullPolicy: Always
+          command: ["node"]
+          args:
+            - "packages/backend"
+            - "--config"
+            - "app-config.yaml"
+            - "--config"
+            - "app-config.prod.yaml"
+          ports:
+            - name: http
+              containerPort: 7007
+          envFrom:
+            - secretRef:
+                name: postgres-secrets
+          env:
+            - name: BACKSTAGE_URL
+              value: http://backstage.192.168.64.7.nip.io
+            - name: BACKSTAGE_POSTGRES_HOST
+              value: backstage-postgres.backstage.svc.cluster.local
+          volumeMounts:
+            - name: config
+              mountPath: /app/app-config.production.yaml
+              subPath: app-config.production.yaml
+          readinessProbe:
+            httpGet:
+              port: 7007
+              path: /healthcheck
+          livenessProbe:
+            httpGet:
+              port: 7007
+              path: /healthcheck
+          resources:
+            requests:
+              memory: 512Mi
+            limits:
+              memory: 1Gi
+      volumes:
+        - name: config
+          configMap:
+            name: backstage-config

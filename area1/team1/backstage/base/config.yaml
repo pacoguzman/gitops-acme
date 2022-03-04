@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backstage-config
+  namespace: backstage
+data:
+  app-config.prod.yaml: |
+    app:
+      title: Stuart Developer Portal
+      baseUrl: ${BACKSTAGE_URL}
+
+    backend:
+      baseUrl: ${BACKSTAGE_URL}
+      listen:
+        port: 7007
+      cors:
+        origin: ${BACKSTAGE_URL}
+      database:
+        client: pg
+        connection:
+          host: ${BACKSTAGE_POSTGRES_HOST}
+          port: ${BACKSTAGE_POSTGRES_SERVICE_PORT}
+          user: ${BACKSTAGE_POSTGRES_USER}
+          password: ${BACKSTAGE_POSTGRES_PASSWORD}
+
+    techdocs:
+      storageUrl: ${BACKSTAGE_URL}/api/techdocs/static/docs
+      requestUrl: ${BACKSTAGE_URL}/api/techdocs

@@ -4,5 +4,6 @@ kind: Kustomization
 resources:
 - resources/rollouts.yaml
 - resources/rollouts-2.yaml
+- resources/backstage.yaml
 
 namespace: argocd

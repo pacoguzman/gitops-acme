@@ -1,0 +1,17 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: backstage
+  namespace: backstage
+spec:
+  rules:
+    - host: backstage.192.168.64.7.nip.io
+      http:
+        paths:
+          - backend:
+              service:
+                name: backstage
+                port:
+                  number: 7007
+            pathType: ImplementationSpecific
