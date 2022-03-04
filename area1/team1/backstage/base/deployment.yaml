@@ -43,14 +43,14 @@ spec:
             - name: config
               mountPath: /app/app-config.production.yaml
               subPath: app-config.production.yaml
-          readinessProbe:
-            httpGet:
-              port: 7007
-              path: /healthcheck
-          livenessProbe:
-            httpGet:
-              port: 7007
-              path: /healthcheck
+          #readinessProbe:
+          #  httpGet:
+          #    port: 7007
+          #    path: /healthcheck
+          #livenessProbe:
+          #  httpGet:
+          #    port: 7007
+          #    path: /healthcheck
           resources:
             requests:
               memory: 512Mi
