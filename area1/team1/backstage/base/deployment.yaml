@@ -41,8 +41,8 @@ spec:
               value: backstage-postgres.backstage.svc.cluster.local
           volumeMounts:
             - name: config
-              mountPath: /app/app-config.production.yaml
-              subPath: app-config.production.yaml
+              mountPath: /app/app-config.prod.yaml
+              subPath: app-config.prod.yaml
           #readinessProbe:
           #  httpGet:
           #    port: 7007
