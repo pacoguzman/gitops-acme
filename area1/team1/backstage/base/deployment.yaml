@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: backstage
-          image: registry.hub.docker.com/pacoguzman/dev-portal:a34342d
+          image: registry.hub.docker.com/pacoguzman/dev-portal:453a800
           imagePullPolicy: Always
           command: ["node"]
           args:
@@ -41,6 +41,8 @@ spec:
               value: backstage-postgres.backstage.svc.cluster.local
             - name: BACKSTAGE_REDIS_CONNECTION
               value: redis://redis-cache.backstage.svc.cluster.local:6379/0
+            - name: ARGOCD_URL
+              value: http://argocd.192.168.64.7.nip.io
           volumeMounts:
             - name: config
               mountPath: /app/app-config.prod.yaml
