@@ -5,6 +5,7 @@ metadata:
   name: backstage
   namespace: backstage
 spec:
+  ingressClassName: nginx
   rules:
     - host: backstage.192.168.64.7.nip.io
       http:
@@ -14,4 +15,5 @@ spec:
                 name: backstage
                 port:
                   number: 7007
-            pathType: ImplementationSpecific
+            path: /
+            pathType: Prefix
