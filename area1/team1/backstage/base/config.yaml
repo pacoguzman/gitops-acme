@@ -20,8 +20,8 @@ data:
         connection:
           host: ${BACKSTAGE_POSTGRES_HOST}
           port: ${BACKSTAGE_POSTGRES_SERVICE_PORT}
-          user: ${BACKSTAGE_POSTGRES_USER}
-          password: ${BACKSTAGE_POSTGRES_PASSWORD}
+          user: ${POSTGRES_USER}
+          password: ${POSTGRES_PASSWORD}
 
     techdocs:
       storageUrl: ${BACKSTAGE_URL}/api/techdocs/static/docs
