@@ -26,3 +26,7 @@ data:
     techdocs:
       storageUrl: ${BACKSTAGE_URL}/api/techdocs/static/docs
       requestUrl: ${BACKSTAGE_URL}/api/techdocs
+
+    cache:
+      store: redis
+      connection: ${BACKSTAGE_REDIS_CONNECTION}

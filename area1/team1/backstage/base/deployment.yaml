@@ -39,6 +39,8 @@ spec:
               value: http://backstage.192.168.64.7.nip.io
             - name: BACKSTAGE_POSTGRES_HOST
               value: backstage-postgres.backstage.svc.cluster.local
+            - name: BACKSTAGE_REDIS_CONNECTION
+              value: redis://redis-cache.backstage.svc.cluster.local:6379/0
           volumeMounts:
             - name: config
               mountPath: /app/app-config.prod.yaml
