@@ -3,11 +3,11 @@ kind: Kustomization
 
 resources:
   - namespace.yaml
-  - postgres-sealedsecret.yaml
+  #- postgres-sealedsecret.yaml
   - postgres-storage.yaml
   - postgres-deployment.yaml
   - postgres-service.yaml
-  - sealedsecret.yaml
+  #- sealedsecret.yaml
   - config.yaml
   - deployment.yaml
   - service.yaml
