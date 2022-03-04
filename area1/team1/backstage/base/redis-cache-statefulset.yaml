@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis-cache
+  namespace: backstage
+spec:
+  selector:
+    matchLabels:
+      app: redis-cache
+  serviceName: redis-cache
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redis-cache
+    spec:
+      containers:
+        - name: redis
+          image: library/redis:6.2.6-bullseye
+          args: ["--appendonly", "yes", "--save", "900", "1", "--save", "30", "2"]
+          ports:
+            - containerPort: 6379
+              name: redis
+          resources:
+            limits:
+              cpu: .50
+              memory: 150Mi
+            requests:
+              cpu: .25
+              memory: 100Mi
+          volumeMounts:
+            - name: redis-cache-volume
+              mountPath: /data
+          readinessProbe:
+            exec:
+              command:
+              - sh
+              - -c
+              - "/usr/local/bin/redis-cli -h $(hostname) ping"
+            initialDelaySeconds: 15
+            timeoutSeconds: 5
+          livenessProbe:
+            exec:
+              command:
+              - sh
+              - -c
+              - "/usr/local/bin/redis-cli -h $(hostname) ping"
+            initialDelaySeconds: 15
+            timeoutSeconds: 5
+  volumeClaimTemplates:
+  - metadata:
+      name: redis-cache-volume
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
