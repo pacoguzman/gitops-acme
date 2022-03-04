@@ -30,3 +30,14 @@ data:
     cache:
       store: redis
       connection: ${BACKSTAGE_REDIS_CONNECTION}
+
+    catalog:
+      import:
+        entityFilename: catalog-info.yaml
+        pullRequestBranchName: backstage-integration
+      rules:
+        - allow: [Component, System, API, Group, User, Resource, Location]
+      locations:
+        # dev-portal it self (to be removed after setting up integration I guess)
+        - type: file
+          target: /app/catalog-info.yaml
