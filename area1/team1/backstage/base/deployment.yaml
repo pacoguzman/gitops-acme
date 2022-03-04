@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: backstage
-          image: registry.hub.docker.com/pacoguzman/dev-portal:a34342d
+          image: registry.hub.docker.com/pacoguzman/dev-portal:453a800
           imagePullPolicy: Always
           command: ["node"]
           args:
